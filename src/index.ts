@@ -1,42 +1,24 @@
 /**
- * Custom Plugin Entry Point
+ * BountyStack Agent — Custom Plugins
  *
- * This file is where you can define custom actions, providers, and evaluators
- * for your ElizaOS agent. Add your logic here and reference this plugin in
- * your character file.
- *
- * ElizaOS Plugin Docs: https://elizaos.github.io/eliza/docs/core/plugins
+ * This file exports all custom plugins for the BountyStack agent:
+ * - superteam-scraper: Fetches and filters bounties from Superteam Earn
+ * - rate-monitor: Monitors USDT to Naira exchange rates
+ * - proposal-generator: Generates tailored proposals for bounties
  */
 
 import { type Plugin } from "@elizaos/core";
+import { fetchBountiesAction } from "./plugins/superteam-scraper";
+import { fetchRatesAction } from "./plugins/rate-monitor";
+import { generateProposalAction, getUserProfileAction } from "./plugins/proposal-generator";
 
-/**
- * Example custom action.
- * Replace this with your own action logic.
- */
-const exampleAction = {
-  name: "EXAMPLE_ACTION",
-  description: "An example action — replace with your own.",
-  similes: ["DEMO", "SAMPLE"],
-  validate: async () => true,
-  handler: async (_runtime: unknown, message: { content: { text: string } }) => {
-    console.log("Custom action triggered with message:", message.content.text);
-    return true;
-  },
-  examples: [],
-};
-
-/**
- * Your custom plugin.
- * Add this plugin's name to the `plugins` array in your character file
- * to activate it.
- */
-export const customPlugin: Plugin = {
-  name: "custom-plugin",
-  description: "My custom ElizaOS plugin",
-  actions: [exampleAction],
+export const bountystackPlugin: Plugin = {
+  name: "bountystack",
+  description: "BountyStack - Nigerian web3 hustler's copilot for finding bounties, monitoring crypto rates, and writing proposals",
+  actions: [fetchBountiesAction, fetchRatesAction, generateProposalAction, getUserProfileAction],
   providers: [],
   evaluators: [],
 };
 
-export default customPlugin;
+export { fetchBountiesAction, fetchRatesAction, generateProposalAction, getUserProfileAction };
+export default bountystackPlugin;
