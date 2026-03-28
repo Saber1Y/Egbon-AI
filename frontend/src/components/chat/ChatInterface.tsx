@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { ChatMessages } from './ChatMessages'
-import { ChatInput } from './ChatInput'
+import { ChatMessages } from "./ChatMessages";
+import { ChatInput } from "./ChatInput";
 
 export function ChatInterface() {
   return (
-    <div className="flex flex-col h-full bg-surface-dim">
+    <div className="flex flex-col h-screen bg-surface-dim ">
       <div className="flex-1 min-h-0 overflow-hidden">
         <ChatMessages />
       </div>
@@ -13,5 +13,5 @@ export function ChatInterface() {
         <ChatInput />
       </div>
     </div>
-  )
+  );
 }

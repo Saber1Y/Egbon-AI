@@ -9,7 +9,6 @@ interface BountyCardProps {
   skills: string[]
   deadline: string
   sponsor?: string
-  isHot?: boolean
   onClaim?: () => void
 }
 
@@ -20,16 +19,11 @@ export function BountyCard({
   skills,
   deadline,
   sponsor = 'Superteam',
-  isHot = false,
   onClaim,
 }: BountyCardProps) {
   return (
     <div className="surface-container-highest border-2 border-tertiary rounded-xl p-5 gold-glow relative group">
-      {isHot && (
-        <div className="absolute top-4 right-4 bg-tertiary/10 text-tertiary text-[10px] font-black px-2 py-1 rounded-md border border-tertiary/30">
-          HOT BOUNTY
-        </div>
-      )}
+   
       <div className="flex justify-between items-start mb-4">
         <div>
           <h4 className="font-headline font-extrabold text-lg text-white">{title}</h4>
@@ -60,7 +54,7 @@ export function BountyCard({
           className="bg-tertiary text-on-tertiary font-black px-4 py-2 rounded-lg text-xs hover:scale-105 transition-transform font-headline"
           onClick={onClaim}
         >
-          Claim Now
+          Apply Now
         </button>
       </div>
     </div>

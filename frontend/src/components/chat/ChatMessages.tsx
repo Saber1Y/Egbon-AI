@@ -30,7 +30,7 @@ const messages: Message[] = [
 
 export function ChatMessages() {
   return (
-    <div className="flex-1 overflow-y-auto p-8 space-y-8 hide-scrollbar">
+    <div className="flex-1  p-8 space-y-8 hide-scrollbar">
       {messages.map((msg) => (
         <div key={msg.id} className={`flex gap-4 ${msg.sender === 'user' ? 'flex-row-reverse' : ''}`}>
           {msg.sender === 'bot' ? (
