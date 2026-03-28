@@ -1,7 +1,6 @@
 'use client'
 
 import { BountyCard } from '@/components/bounties/BountyCard'
-import { Topbar } from '@/components/layout/Topbar'
 
 const sampleBounties = [
   {
@@ -62,41 +61,38 @@ const sampleBounties = [
 
 export default function BountiesPage() {
   return (
-    <div className="flex flex-col ml-64">
-      <Topbar />
-      <div className="flex-1 overflow-y-auto p-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-white font-headline">Bounties</h1>
-            <p className="text-slate-400 mt-2">Find your next gig, oga go bless!</p>
-          </div>
+    <div className="p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl font-extrabold text-white font-headline">Bounties</h1>
+          <p className="text-slate-400 mt-2">Find your next gig, oga go bless!</p>
+        </div>
 
-          <div className="flex gap-4 mb-8">
-            <input
-              type="text"
-              placeholder="Search bounties..."
-              className="flex-1 bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface placeholder:text-slate-500 focus:outline-none focus:border-primary"
-            />
-            <select className="bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary">
-              <option>All Skills</option>
-              <option>Frontend</option>
-              <option>Backend</option>
-              <option>Blockchain</option>
-              <option>Content</option>
-            </select>
-            <select className="bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary">
-              <option>All Values</option>
-              <option>$100+</option>
-              <option>$500+</option>
-              <option>$1,000+</option>
-            </select>
-          </div>
+        <div className="flex gap-4 mb-8">
+          <input
+            type="text"
+            placeholder="Search bounties..."
+            className="flex-1 bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface placeholder:text-slate-500 focus:outline-none focus:border-primary"
+          />
+          <select className="bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary">
+            <option>All Skills</option>
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>Blockchain</option>
+            <option>Content</option>
+          </select>
+          <select className="bg-surface-container-low border border-slate-700 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary">
+            <option>All Values</option>
+            <option>$100+</option>
+            <option>$500+</option>
+            <option>$1,000+</option>
+          </select>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {sampleBounties.map((bounty, index) => (
-              <BountyCard key={index} {...bounty} />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {sampleBounties.map((bounty, index) => (
+            <BountyCard key={index} {...bounty} />
+          ))}
         </div>
       </div>
     </div>
