@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Icon } from '@/components/ui/Icon'
+import { Plus, Smile, Send } from 'lucide-react'
 
 interface ChatInputProps {
   onSend?: (message: string) => void
@@ -20,7 +20,7 @@ export function ChatInput({ onSend }: ChatInputProps) {
     <div className="p-6 bg-surface-container-low/50 backdrop-blur-xl border-t border-slate-800/50">
       <div className="flex items-end gap-4 max-w-5xl mx-auto bg-surface-container-lowest p-2 rounded-2xl">
         <button className="p-3 text-slate-400 hover:text-primary transition-colors">
-          <Icon name="add_circle" />
+          <Plus size={20} />
         </button>
         <div className="flex-1 relative">
           <textarea
@@ -40,13 +40,13 @@ export function ChatInput({ onSend }: ChatInputProps) {
         </div>
         <div className="flex gap-2">
           <button className="p-3 text-slate-400 hover:text-primary transition-colors">
-            <Icon name="mood" />
+            <Smile size={20} />
           </button>
           <button
             className="bg-indigo-600 text-white p-3 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-[0_4px_20px_rgba(79,70,229,0.3)]"
             onClick={handleSend}
           >
-            <Icon name="send" />
+            <Send size={20} />
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '@/components/ui/Icon'
+import { TrendingUp, TrendingDown } from 'lucide-react'
 
 interface RateCardProps {
   exchange: string
@@ -72,7 +72,7 @@ export function RateCard({ exchange, rate, change, isBest = false, logo }: RateC
           isPositive ? 'text-secondary' : 'text-error'
         }`}
       >
-        <Icon name={isPositive ? 'trending_up' : 'trending_down'} />
+        {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
         <span>
           {isPositive ? '+' : ''}
           {change.toFixed(2)}% {isBest ? '(Live)' : ''}

@@ -1,7 +1,5 @@
 'use client'
 
-import { Icon } from '@/components/ui/Icon'
-
 interface Message {
   id: number
   sender: 'bot' | 'user'
@@ -54,7 +52,7 @@ export function ChatMessages() {
             <img
               alt="User Avatar"
               className="w-12 h-12 rounded-xl border-2 border-primary/20"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbXndbz9hxgUpCYw1LvCNii_GbT8jytKSYFRbJZPNBB6zA0ohjPpnVcxDsW1c-IHtrnNUtwFLOOJEM34pzEXc6EVf4B8FlIhUo6cTevKwSynMXDzR-wIyb__1JqbCfInirgiNY36VHvQjlY9IQG-D-dthuXsN42i40GQpruYZhsphrMc-Qw77lFHgXzmXrRf44-EVXQRZ8P15Yf-nH69STTeGU52990zl4dHvCEXjZa5z4CWpBHYnZfOkstwizaaatqfPcAy-tAAt6"
+              src="https://lh3.googleusercontent.com/a/ACg8ocInmJwVyNf3LrkC9hTyMkmjto9hoY8ay6rGSKCiByM0cjDZwuo=s96-c"
             />
           )}
           <div className={`space-y-3 max-w-2xl ${msg.sender === 'user' ? 'text-right' : ''}`}>

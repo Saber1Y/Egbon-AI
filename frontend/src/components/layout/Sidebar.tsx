@@ -1,11 +1,11 @@
 'use client'
 
-import { Icon } from '@/components/ui/Icon'
+import { MessageSquare, Wallet, TrendingUp, Settings } from 'lucide-react'
 
 const navItems = [
-  { name: 'Chat', icon: 'forum', href: '#', active: true },
-  { name: 'Bounties', icon: 'payments', href: '#' },
-  { name: 'Rates', icon: 'trending_up', href: '#' },
+  { name: 'Chat', icon: MessageSquare, href: '#', active: true },
+  { name: 'Bounties', icon: Wallet, href: '#' },
+  { name: 'Rates', icon: TrendingUp, href: '#' },
 ]
 
 export function Sidebar() {
@@ -19,20 +19,23 @@ export function Sidebar() {
       </div>
 
       <nav className="flex-1 space-y-2">
-        {navItems.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
-              item.active
-                ? 'text-indigo-400 font-bold border-r-4 border-indigo-500 bg-indigo-500/10'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-            }`}
-          >
-            <Icon name={item.icon} filled={item.active} />
-            <span className="font-headline tracking-tight">{item.name}</span>
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const Icon = item.icon
+          return (
+            <a
+              key={item.name}
+              href={item.href}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+                item.active
+                  ? 'text-indigo-400 font-bold border-r-4 border-indigo-500 bg-indigo-500/10'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+              }`}
+            >
+              <Icon size={20} />
+              <span className="font-headline tracking-tight">{item.name}</span>
+            </a>
+          )
+        })}
       </nav>
 
       <div className="mt-auto">
@@ -40,7 +43,7 @@ export function Sidebar() {
           href="#"
           className="flex items-center gap-3 px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 transition-all duration-300"
         >
-          <Icon name="settings" />
+          <Settings size={20} />
           <span className="font-headline text-sm">Settings</span>
         </a>
       </div>

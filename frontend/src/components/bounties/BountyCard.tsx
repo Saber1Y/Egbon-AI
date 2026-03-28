@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '@/components/ui/Icon'
+import { Clock } from 'lucide-react'
 
 interface BountyCardProps {
   title: string
@@ -53,7 +53,7 @@ export function BountyCard({
       </div>
       <div className="flex items-center justify-between border-t border-slate-700/50 pt-4">
         <div className="flex items-center gap-2 text-error text-xs font-bold">
-          <Icon name="schedule" />
+          <Clock size={14} />
           <span>{deadline}</span>
         </div>
         <button
