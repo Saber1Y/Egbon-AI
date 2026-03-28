@@ -15,7 +15,7 @@ export function Sidebar() {
         <h1 className="text-2xl font-extrabold bg-gradient-to-tr from-indigo-400 to-indigo-600 bg-clip-text text-transparent font-headline">
           BountyStack
         </h1>
-        <p className="text-xs text-secondary font-label mt-1">Abeg, your money don land! 💰</p>
+        <p className="text-xs text-secondary font-label mt-1">Abeg, your money don land! </p>
       </div>
 
       <nav className="flex-1 space-y-2">

@@ -60,7 +60,7 @@ export function ChatMessages() {
           <div className={`space-y-3 max-w-2xl ${msg.sender === 'user' ? 'text-right' : ''}`}>
             <div className="flex items-center gap-2 justify-start">
               <span className="font-black font-headline text-indigo-400">
-                {msg.sender === 'bot' ? 'STACK BOT' : 'YOU'}
+                {msg.sender === 'bot' ? 'OGA WINS' : 'YOU'}
               </span>
               {msg.sender === 'bot' && (
                 <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-label">
