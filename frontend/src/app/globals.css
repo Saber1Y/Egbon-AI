@@ -41,3 +41,18 @@ body {
 .gold-glow {
   box-shadow: 0 0 15px rgba(255, 185, 95, 0.15);
 }
+
+.gradient-text {
+  background: linear-gradient(135deg, #F7C2FF 0%, #5C67FF 50%, #F7C2FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(92, 103, 255, 0.4);
+}
+
+.glow-pink {
+  box-shadow: 0 0 20px rgba(247, 194, 255, 0.4);
+}

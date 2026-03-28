@@ -1,73 +1,291 @@
-import Link from 'next/link'
-import { MessageSquare, Wallet, TrendingUp, Zap, Globe, Shield } from 'lucide-react'
+import Link from "next/link";
+import Image from "next/image";
+import { Navbar } from "@/components/layout/Navbar";
+import { Button } from "@/components/Button";
+import { Card } from "@/components/Card";
+import { CHAINS, FEATURES, STEPS } from "@/constants";
+import {
+  HiOutlineTrendingUp,
+  HiOutlineSwitchHorizontal,
+  HiOutlineSparkles,
+  HiOutlineRefresh,
+} from "react-icons/hi";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-6xl mx-auto px-8 py-20">
-        <div className="text-center mb-20">
-          <h1 className="text-6xl font-extrabold bg-gradient-to-tr from-indigo-400 via-purple-400 to-indigo-600 bg-clip-text text-transparent font-headline mb-6">
-            Oga Wins
+    <div className="min-h-screen bg-[#0A0A0F]">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-32 pb-20 px-6">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fab6f5]/8 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute top-0 left-1/4 w-px h-48 bg-gradient-to-b from-[#fab6f5]/35 to-transparent" />
+        <div className="pointer-events-none absolute top-0 right-1/4 w-px h-32 bg-gradient-to-b from-[#fab6f5]/20 to-transparent" />
+
+        <div className="pointer-events-none absolute inset-0 hidden lg:block">
+          <Image
+            src="/oga-wins.png"
+            alt="Oga Wins"
+            fill
+            priority
+            className="object-cover object-center opacity-30 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#09090b]/82 via-[#09090b]/38 to-[#09090b]/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-[#09090b]/62" />
+          <div className="absolute inset-0 bg-[#09090b]/18" />
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#09090b]/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] to-transparent" />
+
+        <div className="pointer-events-none absolute inset-0 lg:hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:64px_64px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/80 via-[#09090b]/36 to-[#09090b]/88" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A1A24] border border-[#2A2A35] mb-8">
+            <span className="w-2 h-2 rounded-full bg-[#fab6f5] animate-pulse"></span>
+            <span className="text-sm text-[#A0A0B0]">
+              Oga Wins • Powered by Eliza + Nosana
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <span className="gradient-text">Meet Oga Wins</span>
+            <br />
+            <span className="text-white">
+              Your Nigerian Web3 Hustler Copilot
+            </span>
           </h1>
-          <p className="text-2xl text-slate-300 mb-4">Your Nigerian Web3 Hustler Copilot</p>
-          <p className="text-lg text-secondary font-headline mb-8">Abeg, your money don land!</p>
-          <Link
-            href="/chat"
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-indigo-500 transition-colors font-headline"
+
+          <p className="text-xl text-[#A0A0B0] max-w-2xl mx-auto mb-10">
+            Abeg, your money don land! Oga Wins finds Superteam bounties, tracks
+            USDT/NGN rates, generates winning proposals, and speaks Yoruba,
+            Igbo, Hausa, and Pidgin.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/chat">
+              <Button size="lg" className="glow-blue">
+                Start Hustling →
+              </Button>
+            </Link>
+            <Link href="/bounties">
+              <Button variant="outline" size="lg">
+                View Bounties
+              </Button>
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+            {[
+              { label: "Bounty Sources", value: "Superteam" },
+              { label: "Rate Exchanges", value: "3" },
+              { label: "Languages", value: "Yoruba + 4" },
+              { label: "Stack", value: "ElizaOS + Qwen" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-bold gradient-text">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-[#606070]">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-6 bg-[#12121A]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">How It Works</h2>
+            <p className="text-[#A0A0B0]">
+              Oga Wins hustles for you while you focus on shipping
+            </p>
+          </div>
+
+          <div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            id="#howitworks"
           >
-            <MessageSquare size={24} />
-            Start Hustling
-          </Link>
-        </div>
+            {FEATURES.map((feature, index) => {
+              const IconComponent = {
+                HiOutlineTrendingUp: HiOutlineTrendingUp,
+                HiOutlineSwitchHorizontal: HiOutlineSwitchHorizontal,
+                HiOutlineSparkles: HiOutlineSparkles,
+                HiOutlineRefresh: HiOutlineRefresh,
+              }[feature.icon];
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-surface-container-low rounded-xl p-6 border border-slate-700">
-            <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4">
-              <Wallet className="text-indigo-400" size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-white font-headline mb-2">Find Bounties</h3>
-            <p className="text-slate-400">Scans Superteam for opportunities that match your skills. React, Solidity, Backend - we get you covered.</p>
-          </div>
-          <div className="bg-surface-container-low rounded-xl p-6 border border-slate-700">
-            <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
-              <TrendingUp className="text-secondary" size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-white font-headline mb-2">Track Rates</h3>
-            <p className="text-slate-400">Monitors USDT/NGN across Binance, KuCoin, Bybit. Get alerts when rates hit your target.</p>
-          </div>
-          <div className="bg-surface-container-low rounded-xl p-6 border border-slate-700">
-            <div className="w-12 h-12 bg-tertiary/20 rounded-xl flex items-center justify-center mb-4">
-              <Zap className="text-tertiary" size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-white font-headline mb-2">Generate Proposals</h3>
-            <p className="text-slate-400">AI-powered proposal generation tailored to your skills and past work. Submit faster, win more.</p>
+              return (
+                <Card key={index} hover className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F7C2FF]/20 to-[#5C67FF]/20 mb-4">
+                    {IconComponent && (
+                      <IconComponent className="w-8 h-8 text-[#F7C2FF]" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-[#A0A0B0]">
+                    {feature.description}
+                  </p>
+                </Card>
+              );
+            })}
           </div>
         </div>
+      </section>
 
-        <div className="bg-surface-container-low rounded-xl p-8 border border-slate-700 mb-20">
-          <h2 className="text-2xl font-bold text-white font-headline mb-6 text-center">Built For Nigerian Devs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex items-start gap-4">
-              <Globe className="text-indigo-400 mt-1" size={20} />
-              <div>
-                <h4 className="text-white font-medium mb-1">Speaks Your Language</h4>
-                <p className="text-slate-400 text-sm">Pidgin English, Yoruba, Igbo, Hausa - Oga Wins understands you.</p>
+      {/* How It Works Steps */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Get Started with Oga Wins
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {STEPS.map((step, index) => (
+              <div key={index} className="relative">
+                <div className="text-6xl font-bold text-[#1A1A24] absolute -top-4 -left-2">
+                  {step.number}
+                </div>
+                <div className="pt-8 pl-4">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-[#A0A0B0]">{step.description}</p>
+                </div>
+                {index < STEPS.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <span className="text-[#5C67FF] text-2xl">→</span>
+                  </div>
+                )}
               </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Shield className="text-secondary mt-1" size={20} />
-              <div>
-                <h4 className="text-white font-medium mb-1">Decentralized</h4>
-                <p className="text-slate-400 text-sm">Runs on Nosana GPU network. Your AI, your data, your control.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="text-center">
-          <p className="text-slate-500 text-sm">Powered by ElizaOS + Qwen3.5 on Nosana</p>
+      <section className="py-20 px-6 bg-[#12121A]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              What You Can Do Today
+            </h2>
+            <p className="text-[#A0A0B0]">
+              Oga Wins is built for Nigerian devs hustling in web3
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                title: "Find Bounties",
+                copy: "Search Superteam for opportunities matching React, Solidity, or Community skills.",
+              },
+              {
+                title: "Track USDT/NGN",
+                copy: "Monitor live rates across Binance, KuCoin, Bybit and get alerts.",
+              },
+              {
+                title: "Generate Proposals",
+                copy: "AI-generated proposals in your voice. Win more bounties, stack more cash.",
+              },
+              {
+                title: "Speak Your Language",
+                copy: "Oga Wins understands Pidgin, Yoruba, Igbo, and Hausa natively.",
+              },
+            ].map((item) => (
+              <Card key={item.title} hover>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-6 text-[#A0A0B0]">{item.copy}</p>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Full Workspace Map
+            </h2>
+            <p className="text-[#A0A0B0]">
+              Everything you need to hustle smart in web3
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {[
+              {
+                title: "/chat",
+                label: "Chat",
+                copy: "Talk to Oga Wins in Pidgin or any Nigerian language. Get bounty matches and proposals.",
+              },
+              {
+                title: "/bounties",
+                label: "Bounties",
+                copy: "Browse all active Superteam bounties filtered by your skills.",
+              },
+              {
+                title: "/rates",
+                label: "Rates",
+                copy: "Track USDT/NGN across multiple exchanges. Set alerts for target rates.",
+              },
+            ].map((item) => (
+              <Card key={item.title} hover>
+                <div className="text-xs uppercase tracking-[0.24em] text-[#72738A] mb-3">
+                  {item.label}
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-6 text-[#A0A0B0]">{item.copy}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-[#1A1A24] to-[#12121A] rounded-3xl p-12 border border-[#2A2A35]">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Ready to Start Hustling?
+            </h2>
+            <p className="text-[#A0A0B0] mb-8">
+              Oga Wins go find your next bounty. Abeg, make we stack!
+            </p>
+            <Link href="/chat">
+              <Button size="lg" className="glow-pink">
+                Talk to Oga Wins
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-6 border-t border-[#2A2A35]">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-[#606070] text-sm">Oga Wins</span>
+          </div>
+          <div className="text-[#606070] text-sm">
+            Built for Nosana x ElizaOS Hackathon 2026
+          </div>
+        </div>
+      </footer>
     </div>
-  )
+  );
 }
