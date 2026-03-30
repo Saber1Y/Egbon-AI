@@ -92,3 +92,6 @@ pnpm-lock.yaml
 bun.lockb
 /.eliza/.elizadb
 /dist
+
+# Sensitive job definitions
+nos_job_def/nosana_eliza_job_definition.json
