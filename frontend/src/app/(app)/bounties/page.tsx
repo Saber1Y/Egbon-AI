@@ -61,7 +61,7 @@ const sampleBounties = [
 
 export default function BountiesPage() {
   return (
-    <div className="p-8 h-screen overflow-y-auto">
+    <div className="p-8 h-full overflow-y-auto">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-extrabold text-white font-headline">Bounties</h1>

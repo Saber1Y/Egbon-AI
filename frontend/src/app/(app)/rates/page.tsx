@@ -12,7 +12,7 @@ const exchanges = [
 
 export default function RatesPage() {
   return (
-    <div className="p-8 h-screen overflow-y-auto">
+    <div className="p-8 h-full overflow-y-auto">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-extrabold text-white font-headline">Market Rates</h1>
