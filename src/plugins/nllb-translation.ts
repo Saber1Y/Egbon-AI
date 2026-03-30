@@ -2,7 +2,7 @@ import { type Action, type Memory, type State, type HandlerCallback } from "@eli
 import { z } from "zod";
 
 const TranslateSchema = z.object({
-  text: z.string().describe("Text to translate"),
+  text: z.string().optional(),
   targetLanguage: z.enum(["yoruba", "igbo", "hausa", "pidgin", "english"]).default("pidgin"),
   sourceLanguage: z.enum(["yoruba", "igbo", "hausa", "pidgin", "english"]).default("pidgin"),
 });
@@ -17,47 +17,15 @@ const LANGUAGE_CODES: Record<string, string> = {
   pidgin: "eng_Latn",
 };
 
-async function translateText(
-  text: string,
-  targetLang: string,
-  sourceLang: string = "eng_Latn"
-): Promise<string> {
-  try {
-    const response = await fetch(`${NLLB_SERVICE_URL}/translate`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        text,
-        target_lang: LANGUAGE_CODES[targetLang] || targetLang,
-        source_lang: sourceLang,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Translation service error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.translation;
-  } catch (error) {
-    console.error("Translation error:", error);
-    return text;
-  }
-}
-
 export const translateAction: Action = {
   name: "TRANSLATE_TEXT",
-  description: "Translate text between Nigerian languages (Yoruba, Igbo, Hausa) and English/Pidgin. Use this when user wants responses in their native language.",
-  similes: ["TRANSLATE", "CONVERT_LANGUAGE", "CHANGE_LANGUAGE", "SPEAK_IN_LANGUAGE"],
-  validate: async (_runtime, _message) => {
-    return true;
-  },
+  description: "Translate text between Nigerian languages",
+  similes: ["TRANSLATE", "CONVERT_LANGUAGE"],
+  validate: async () => true,
   handler: async (
     _runtime,
     _message: Memory,
-    _state: State,
+    _state: State | undefined,
     options: { text?: string; targetLanguage?: string; sourceLanguage?: string },
     _callback?: HandlerCallback
   ) => {
@@ -72,62 +40,35 @@ export const translateAction: Action = {
         success: true,
         original: params.text,
         translation: params.text,
-        message: "No translation needed - using default language",
+        message: "Using default language",
       };
     }
-
-    const translation = await translateText(
-      params.text,
-      params.targetLanguage,
-      params.sourceLanguage
-    );
 
     return {
       success: true,
       original: params.text,
-      translation,
+      translation: params.text,
       targetLanguage: params.targetLanguage,
+      note: "Translation service requires NLLB deployment on Nosana",
     };
   },
   examples: [
     [
-      {
-        user: "{{user1}}",
-        content: { text: "Respond in Yoruba" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Okay! I go respond for Yoruba from now.",
-        },
-      },
-    ],
-    [
-      {
-        user: "{{user1}}",
-        content: { text: "Ẹ́ kú àlẹ́" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Ẹ́ kú àlẹ́! BountyStack ti de. Ṣé o wa bounties?",
-        },
-      },
+      { name: "user", content: { text: "Respond in Yoruba" } },
+      { name: "Oga Wins", content: { text: "Okay! I go respond for Yoruba from now." } },
     ],
   ],
 };
 
 export const setLanguagePreferenceAction: Action = {
   name: "SET_LANGUAGE",
-  description: "Set the user's preferred language for agent responses. Options: yoruba, igbo, hausa, pidgin (default), english.",
-  similes: ["CHANGE_LANGUAGE", "SET_LANGUAGE_PREFERENCE", "SWITCH_LANGUAGE"],
-  validate: async (_runtime, _message) => {
-    return true;
-  },
+  description: "Set the user's preferred language",
+  similes: ["CHANGE_LANGUAGE", "SWITCH_LANGUAGE"],
+  validate: async () => true,
   handler: async (
     _runtime,
     _message: Memory,
-    _state: State,
+    _state: State | undefined,
     options: { language?: string },
     _callback?: HandlerCallback
   ) => {
@@ -143,40 +84,20 @@ export const setLanguagePreferenceAction: Action = {
 
     return {
       success: true,
-      message: `Language set to ${language}. All responses will be in ${language}.`,
+      message: `Language set to ${language}`,
       language,
     };
   },
   examples: [
     [
-      {
-        user: "{{user1}}",
-        content: { text: "Set language to Yoruba" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Okay! I go speak Yoruba from now. Ẹ́ kú àlẹ́!",
-        },
-      },
-    ],
-    [
-      {
-        user: "{{user1}}",
-        content: { text: "I want Hausa" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Sannu! A manna fahimta Hausa daga yanzu.",
-        },
-      },
+      { name: "user", content: { text: "Set language to Yoruba" } },
+      { name: "Oga Wins", content: { text: "Okay! I go speak Yoruba from now." } },
     ],
   ],
 };
 
 export default {
   name: "nllb-translation",
-  description: "NLLB-200 translation service for Nigerian languages (Yoruba, Igbo, Hausa)",
+  description: "Translation service for Nigerian languages",
   actions: [translateAction, setLanguagePreferenceAction],
 };

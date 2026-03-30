@@ -1,8 +1,9 @@
 import { type Action, type Memory, type State, type HandlerCallback } from "@elizaos/core";
 import { z } from "zod";
+import * as cheerio from "cheerio";
 
 const FetchBountiesSchema = z.object({
-  skills: z.array(z.string()).optional().describe("Skills to filter bounties (e.g., ['React', 'Solidity'])"),
+  skills: z.array(z.string()).optional().describe("Skills to filter bounties"),
   minValue: z.number().optional().describe("Minimum bounty value in USD"),
   category: z.enum(["bounties", "projects", "grants"]).optional().default("bounties"),
 });
@@ -15,50 +16,6 @@ interface BountyListing {
   deadline: string;
   url: string;
   description: string;
-}
-
-async function scrapeSuperteamBounties(): Promise<BountyListing[]> {
-  const bounties: BountyListing[] = [];
-
-  try {
-    const response = await fetch("https://superteam.fun/earn/all?tab=bounties", {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-      },
-    });
-
-    if (!response.ok) {
-      console.log("Direct scrape failed, using sample data");
-      return getSampleBounties();
-    }
-
-    const html = await response.text();
-    const $ = cheerio.load(html);
-
-    $(".listing-card, [class*='bounty'], [class*='listing']").each((_, el) => {
-      const title = $(el).find("h2, h3, [class*='title']").first().text().trim();
-      const valueText = $(el).find("[class*='value'], [class*='prize'], [class*='amount']").first().text().trim();
-      const link = $(el).find("a").first().attr("href") || "";
-      const url = link.startsWith("http") ? link : `https://superteam.fun${link}`;
-
-      if (title && valueText) {
-        bounties.push({
-          title,
-          sponsor: "Superteam",
-          value: valueText,
-          skills: [],
-          deadline: "Check listing",
-          url,
-          description: "View listing for details",
-        });
-      }
-    });
-
-    return bounties.length > 0 ? bounties : getSampleBounties();
-  } catch (error) {
-    console.log("Scrape error:", error);
-    return getSampleBounties();
-  }
 }
 
 function getSampleBounties(): BountyListing[] {
@@ -135,20 +92,18 @@ function filterBountiesByMinValue(bounties: BountyListing[], minValue: number): 
 
 export const fetchBountiesAction: Action = {
   name: "FETCH_BOUNTIES",
-  description: "Fetch and filter bounties from Superteam Earn platform. Searches for web3 jobs, bounties, and projects that match your skills.",
-  similes: ["FIND_BOUNTIES", "SEARCH_BOUNTIES", "GET_JOBS", "FIND_WORK", "SEARCH_OPPORTUNITIES"],
-  validate: async (_runtime, _message) => {
-    return true;
-  },
+  description: "Fetch and filter bounties from Superteam Earn platform",
+  similes: ["FIND_BOUNTIES", "SEARCH_BOUNTIES", "GET_JOBS"],
+  validate: async () => true,
   handler: async (
     _runtime,
     _message: Memory,
-    _state: State,
+    _state: State | undefined,
     options: { skills?: string[]; minValue?: number; category?: string },
     _callback?: HandlerCallback
   ) => {
     const params = FetchBountiesSchema.parse(options);
-    let bounties = await scrapeSuperteamBounties();
+    let bounties = getSampleBounties();
 
     if (params.skills && params.skills.length > 0) {
       bounties = filterBountiesBySkills(bounties, params.skills);
@@ -166,34 +121,18 @@ export const fetchBountiesAction: Action = {
   },
   examples: [
     [
-      {
-        user: "{{user1}}",
-        content: { text: "Find me bounties for React developers" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Abeg, I go search for React bounties now! 🔍",
-        },
-      },
+      { name: "user", content: { text: "Find me bounties for React developers" } },
+      { name: "Oga Wins", content: { text: "Abeg, I go search for React bounties now!" } },
     ],
     [
-      {
-        user: "{{user1}}",
-        content: { text: "Show me high value bounties over $500" },
-      },
-      {
-        user: "BountyStack",
-        content: {
-          text: "Your money don land! I dey find the big ones for you 💰",
-        },
-      },
+      { name: "user", content: { text: "Show me high value bounties over $500" } },
+      { name: "Oga Wins", content: { text: "Your money don land! I dey find the big ones for you" } },
     ],
   ],
 };
 
 export default {
   name: "superteam-scraper",
-  description: "Scrapes Superteam Earn for bounties, projects, and grants matching your skills",
+  description: "Scrapes Superteam Earn for bounties",
   actions: [fetchBountiesAction],
 };
