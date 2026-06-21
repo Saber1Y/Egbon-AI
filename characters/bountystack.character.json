@@ -7,7 +7,7 @@
     "@elizaos/plugin-telegram"
   ],
   "settings": {
-    "model": "meta-llama/llama-3.3-70b-instruct:free",
+    "model": "google/gemma-4-26b-a4b-it:free",
     "secrets": {
       "OPENAI_API_KEY": "",
       "OPENAI_API_URL": "https://openrouter.ai/api/v1",
