@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1';
 const API_KEY = process.env.OPENAI_API_KEY || 'sk-or-v1-your-openrouter-key-here';
-const MODEL = process.env.MODEL_NAME || 'google/gemma-2-9b-it:free';
+const MODEL = process.env.MODEL_NAME || 'mistralai/mistral-7b-instruct:free';
 
 const SYSTEM_PROMPT = `You are Egbon AI - Nigerian web3 hustler assistant.
 
