@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1';
-const API_KEY = process.env.OPENAI_API_KEY || 'sk-or-v1-your-openrouter-key-here';
-const MODEL = process.env.MODEL_NAME || 'meta-llama/llama-3.3-70b-instruct:free';
+const API_KEY = process.env.OPENAI_API_KEY || '';
+const MODEL = process.env.MODEL_NAME || 'google/gemma-4-26b-a4b-it:free';
 
 const SYSTEM_PROMPT = `You are Egbon AI - Nigerian web3 hustler assistant.
 
@@ -36,10 +36,10 @@ export async function POST(request: NextRequest) {
   try {
     const { message, history = [] } = await request.json();
     console.log('Message:', message);
-    
+
     const messages = [
       { role: 'system', content: SYSTEM_PROMPT },
-      ...history.slice(-6).map((m: any) => m),
+      ...history.slice(-6).map((m: any) => ({ role: m.role, content: m.content })),
       { role: 'user', content: message }
     ];
 
@@ -59,13 +59,13 @@ export async function POST(request: NextRequest) {
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const errorBody = await response.text();
-      console.error(`OpenRouter error ${response.status}:`, errorBody);
+      console.error(`OpenRouter error ${response.status}:`, JSON.stringify(data));
       return NextResponse.json({ reply: `Abeg, the API no gree: ${response.status}. Check server logs.` });
     }
 
-    const data = await response.json();
     const reply = data.choices?.[0]?.message?.content?.trim();
 
     if (!reply) {
