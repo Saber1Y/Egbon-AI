@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1';
 const API_KEY = process.env.OPENAI_API_KEY || 'sk-or-v1-your-openrouter-key-here';
-const MODEL = process.env.MODEL_NAME || 'openrouter/free';
+const MODEL = process.env.MODEL_NAME || 'meta-llama/llama-3.3-70b-instruct:free';
 
 const SYSTEM_PROMPT = `You are Egbon AI - Nigerian web3 hustler assistant.
 
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
         model: MODEL,
         messages,
         temperature: 0.8,
-        max_tokens: 300,
+        max_tokens: 500,
       }),
     });
 
