@@ -9,7 +9,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'Oga Wins | Nigerian Web3 Hustler Copilot',
+  title: 'Egbon AI | Nigerian Web3 Hustler Copilot',
   description: 'Your Nigerian web3 hustlers copilot - find bounties, check rates, generate proposals. Abeg, your money don land!',
 }
 

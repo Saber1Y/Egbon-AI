@@ -3,7 +3,7 @@ export const FEATURES = [
     icon: "HiOutlineTrendingUp",
     title: "Find Bounties",
     description:
-      "Oga Wins scans Superteam for opportunities that match your skills in React, Solidity, or Community Management.",
+      "Egbon AI scans Superteam for opportunities that match your skills in React, Solidity, or Community Management.",
   },
   {
     icon: "HiOutlineSwitchHorizontal",
@@ -21,7 +21,7 @@ export const FEATURES = [
     icon: "HiOutlineRefresh",
     title: "Speak Your Language",
     description:
-      "Oga Wins understands Pidgin, Yoruba, Igbo, and Hausa. Your AI, your language.",
+      "Egbon AI understands Pidgin, Yoruba, Igbo, and Hausa. Your AI, your language.",
   },
 ];
 
@@ -30,13 +30,13 @@ export const STEPS = [
     number: "01",
     title: "Link Your Profile",
     description:
-      "Connect your Superteam profile and skills so Oga Wins knows what opportunities to find.",
+      "Connect your Superteam profile and skills so Egbon AI knows what opportunities to find.",
   },
   {
     number: "02",
     title: "Get Matched",
     description:
-      "Oga Wins scours active bounties and sends you personalized matches based on your stack.",
+      "Egbon AI scours active bounties and sends you personalized matches based on your stack.",
   },
   {
     number: "03",

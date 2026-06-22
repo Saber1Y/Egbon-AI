@@ -1,35 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1';
 const API_KEY = process.env.OPENAI_API_KEY || '';
-const MODEL = process.env.MODEL_NAME || 'google/gemma-4-26b-a4b-it:free';
+const MODEL = process.env.MODEL_NAME || 'meta-llama/llama-3.3-70b-instruct:free';
 
-const SYSTEM_PROMPT = `You are Egbon AI - Nigerian web3 hustler assistant.
+let cachedSystemPrompt: string | null = null;
 
-CRITICAL: Use Nigerian Pidgin English ONLY. Never use standard English.
+function loadCharacterSystemPrompt(): string {
+  if (cachedSystemPrompt) return cachedSystemPrompt;
 
-Required phrases (MUST use all):
-- abeg (please)
-- egbon (bro/friend)
-- shey (maybe/so)
-- your money don land (you've made it)
-- e go be alright (it'll be fine)
-- no be so? (right?)
-- kia kia (stay safe)
-- no doubt (for sure)
-- make we move (let's go)
-- go hard (do your best)
+  try {
+    const charPath = path.resolve(process.cwd(), '..', 'characters', 'egbon.character.json');
+    const raw = fs.readFileSync(charPath, 'utf-8');
+    const char = JSON.parse(raw);
 
-How you respond:
-- Short sentences (1-3 max)
-- Start with greeting
-- Ask what they need
-- Stay in character always
-- Use emoji sparingly
+    const parts: string[] = [];
 
-You help with: Superteam bounties, USDT/NGN rates, proposal writing.`;
+    if (char.system) parts.push(char.system);
+    if (char.bio?.length) parts.push('', '## Who You Be', ...char.bio.map((b: string) => `- ${b}`));
+    if (char.style?.all?.length) parts.push('', '## Style Rules', ...char.style.all.map((s: string) => `- ${s}`));
+    if (char.style?.chat?.length) parts.push('', '## Chat Style', ...char.style.chat.map((s: string) => `- ${s}`));
+    if (char.topics?.length) parts.push('', '## Your Topics', char.topics.map((t: string) => `- ${t}`).join('\n'));
+
+    cachedSystemPrompt = parts.join('\n');
+  } catch {
+    cachedSystemPrompt = 'You are Egbon AI, a Nigerian web3 hustler assistant. Speak in Nigerian Pidgin English.';
+  }
+
+  return cachedSystemPrompt;
+}
 
 export async function POST(request: NextRequest) {
   console.log('API called with message');
@@ -38,7 +41,7 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
 
     const messages = [
-      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'system', content: loadCharacterSystemPrompt() },
       ...history.slice(-6).map((m: any) => ({ role: m.role, content: m.content })),
       { role: 'user', content: message }
     ];

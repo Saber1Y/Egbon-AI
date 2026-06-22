@@ -1,4 +1,4 @@
-# Egbon AI / Oga Wins
+# Egbon AI
 
 Your Nigerian web3 hustler copilot. Finds Superteam bounties, tracks USDT/NGN rates, generates proposals, and speaks Pidgin English.
 

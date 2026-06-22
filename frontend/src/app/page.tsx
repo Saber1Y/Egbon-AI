@@ -26,7 +26,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 hidden lg:block">
           <Image
             src="/oga-wins.png"
-            alt="Oga Wins"
+            alt="Egbon AI"
             fill
             priority
             className="object-cover object-center opacity-30 scale-105"
@@ -48,12 +48,12 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A1A24] border border-[#2A2A35] mb-8">
             <span className="w-2 h-2 rounded-full bg-[#fab6f5] animate-pulse"></span>
             <span className="text-sm text-[#A0A0B0]">
-              Oga Wins • Powered by Eliza + Nosana
+              Egbon AI • Powered by Eliza + Nosana
             </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="gradient-text">Meet Oga Wins</span>
+            <span className="gradient-text">Meet Egbon AI</span>
             <br />
             <span className="text-white">
               Your Nigerian Web3 Hustler Copilot
@@ -61,7 +61,7 @@ export default function Home() {
           </h1>
 
           <p className="text-xl text-[#A0A0B0] max-w-2xl mx-auto mb-10">
-            Abeg, your money don land! Oga Wins finds Superteam bounties, tracks
+            Abeg, your money don land! Egbon AI finds Superteam bounties, tracks
             USDT/NGN rates, generates winning proposals, and speaks Yoruba,
             Igbo, Hausa, and Pidgin.
           </p>
@@ -104,7 +104,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">How It Works</h2>
             <p className="text-[#A0A0B0]">
-              Oga Wins hustles for you while you focus on shipping
+              Egbon AI hustles for you while you focus on shipping
             </p>
           </div>
 
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Get Started with Oga Wins
+              Get Started with Egbon AI
             </h2>
           </div>
 
@@ -179,7 +179,7 @@ export default function Home() {
               What You Can Do Today
             </h2>
             <p className="text-[#A0A0B0]">
-              Oga Wins is built for Nigerian devs hustling in web3
+              Egbon AI is built for Nigerian devs hustling in web3
             </p>
           </div>
 
@@ -199,7 +199,7 @@ export default function Home() {
               },
               {
                 title: "Speak Your Language",
-                copy: "Oga Wins understands Pidgin, Yoruba, Igbo, and Hausa natively.",
+                copy: "Egbon AI understands Pidgin, Yoruba, Igbo, and Hausa natively.",
               },
             ].map((item) => (
               <Card key={item.title} hover>
@@ -229,7 +229,7 @@ export default function Home() {
               {
                 title: "/chat",
                 label: "Chat",
-                copy: "Talk to Oga Wins in Pidgin or any Nigerian language. Get bounty matches and proposals.",
+                copy: "Talk to Egbon AI in Pidgin or any Nigerian language. Get bounty matches and proposals.",
               },
               {
                 title: "/bounties",
@@ -264,11 +264,11 @@ export default function Home() {
               Ready to Start Hustling?
             </h2>
             <p className="text-[#A0A0B0] mb-8">
-              Oga Wins go find your next bounty. Abeg, make we stack!
+              Egbon AI go find your next bounty. Abeg, make we stack!
             </p>
             <Link href="/chat">
               <Button size="lg" className="glow-pink">
-                Talk to Oga Wins
+                Talk to Egbon AI
               </Button>
             </Link>
           </div>
@@ -279,7 +279,7 @@ export default function Home() {
       <footer className="py-8 px-6 border-t border-[#2A2A35]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-[#606070] text-sm">Oga Wins</span>
+            <span className="text-[#606070] text-sm">Egbon AI</span>
           </div>
           <div className="text-[#606070] text-sm">
             Built for Nosana x ElizaOS Hackathon 2026

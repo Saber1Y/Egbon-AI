@@ -17,7 +17,7 @@ export function Sidebar() {
     <aside className="h-screen w-64 fixed left-0 top-0 border-r border-slate-800/50 bg-slate-900/70 backdrop-blur-xl flex flex-col py-8 px-4 z-50">
       <div className="mb-8 px-2">
         <h1 className="text-2xl font-extrabold bg-gradient-to-tr from-indigo-400 to-indigo-600 bg-clip-text text-transparent font-headline">
-          Oga Wins
+          Egbon AI
         </h1>
         <p className="text-xs text-slate-400  mt-1">
           Your hustling Nigerian web3 developer assistant{" "}
